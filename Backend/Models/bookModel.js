@@ -14,6 +14,9 @@ const book_schema = mongoose.Schema(
             type:String,
             required:true,
             unique:true
+        },
+        "Price":{
+            type:Number
         }
     }
 );

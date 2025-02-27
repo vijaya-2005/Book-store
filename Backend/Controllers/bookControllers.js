@@ -64,4 +64,25 @@ module.exports.putBook = async (req, res) => {
         });
     }
 };
-
+module.exports.deleteBook = async (req, res) => {
+    try {
+        const data = req.params.name;
+        console.log(data);
+        const delete_data = await book_model.findOneAndDelete({ Name: data });
+        if (!delete_data) {
+            return res.json({
+                "status": "fail",
+                "message": "Book not found"
+            });
+        }
+        res.json({
+            "status": "Deleted",
+            "data": delete_data
+        });
+    } catch (err) {
+        res.json({
+            "status": "fail",
+            "err": err.message
+        });
+    }
+};
